@@ -25,6 +25,12 @@
 1. Após configurar o Centro De Implantação, o deploy será automático.
 2. Acesse a URL fornecida pelo Serviço de aplicativo e teste a aplicação.
 
+3. Para fazer os testes só entrar nas abas de usuário e feedbacks, e testar o aplicativo, o GET já está mostrando na tela, o UPDATE E DELETE possuem seus respectivos botões
+   e o POST também...!
+
+   passo a passo dessa parte de testes da aplicação deixamos claro no vídeo feito no youtube...
+   segue o link: 
+
 ## Observações
 - Certifique-se de que todas as variáveis de ambiente estão configuradas corretamente no Serviço de Aplicativo.
 - Atualizações no repositório forkado serão automaticamente refletidas no App Service.
