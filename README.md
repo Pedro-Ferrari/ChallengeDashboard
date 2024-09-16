@@ -9,7 +9,7 @@
 1. Acesse o [Portal do Azure](https://portal.azure.com/).
 2. Crie um novo App Service:
    - Selecione **"Criar um recurso"** e depois **"Aplicativo Web"**.
-   - Preencha os detalhes básicos e crie o App Service.
+   - Preencha os detalhes básicos e crie o Serviço de Aplicativo.
    - ( os dados estão no pdf, fotos para usar como exemplo! )
 
 ## Passo 3: Configurar o Centro de Implantação
@@ -33,4 +33,4 @@
 
 ## Observações
 - Certifique-se de que todas as variáveis de ambiente estão configuradas corretamente no Serviço de Aplicativo.
-- Atualizações no repositório forkado serão automaticamente refletidas no App Service.
+- Atualizações no repositório forkado serão automaticamente refletidas no Serviço de Aplicativo.
