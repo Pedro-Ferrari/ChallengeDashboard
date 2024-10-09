@@ -1,30 +1,33 @@
-# Use uma imagem base do Ubuntu para construção
+# Etapa 1: Construir o projeto usando Maven
 FROM ubuntu:latest AS build
 
-# Atualize o repositório e instale o JDK e Maven
-RUN apt-get update && apt-get install openjdk-17-jdk maven -y
+# Atualize os pacotes e instale o JDK e Maven
+RUN apt-get update && apt-get install -y openjdk-17-jdk maven
 
-# Defina o diretório de trabalho para a construção
+# Defina o diretório de trabalho
 WORKDIR /app
 
-# Copie o arquivo pom.xml e o código-fonte do projeto para o contêiner
-COPY pom.xml .
+# Copie o arquivo pom.xml e baixe as dependências (para cache de build eficiente)
+COPY pom.xml ./
+RUN mvn dependency:go-offline -B
+
+# Copie o restante do código-fonte
 COPY src ./src
 
-# Execute a construção do Maven ignorando os testes
+# Construa o projeto (sem testes)
 RUN mvn clean install -DskipTests
 
-# Use uma imagem base mais leve para executar o aplicativo
+# Etapa 2: Criar uma imagem mais leve para rodar o projeto
 FROM openjdk:17-jdk-slim
 
 # Expor a porta 8080
 EXPOSE 8080
 
-# Defina o diretório de trabalho
+# Definir o diretório de trabalho
 WORKDIR /app
 
-# Copie o arquivo JAR gerado para a imagem final
+# Copiar o JAR construído da etapa de build
 COPY --from=build /app/target/analyzer-0.0.1-SNAPSHOT.jar app.jar
 
-# Comando para executar o aplicativo
+# Executar a aplicação
 ENTRYPOINT ["java", "-jar", "app.jar"]
